@@ -3,8 +3,23 @@ import boto3
 
 
 def lambda_handler(event, context):
+    # Input event is like this...
+    #
+    # {
+    #   "region": "us-east-1",
+    #   "accountId": "************",
+    #   "fragment": {},
+    #   "transformId": "************::KinesisShardLevelDashboard",
+    #   "params": {
+    #     "DashboardName": "kinesis-shard-cfn-macro-sample",
+    #     "StreamName": "kinesis-shard-cfn-macro-sample"
+    #   },
+    #   "requestId": "5dee2557-92ff-4223-8786-92cf1f04966d",
+    #   "templateParameterValues": {}
+    # }
     print('Macro input = %s' % json.dumps(event, indent = 2))
 
+    # Get parameters from event.
     dashboard_name = event['params']['DashboardName']
     stream_name = event['params']['StreamName']
 
@@ -12,6 +27,7 @@ def lambda_handler(event, context):
     shards = __get_shards(stream_name)
     print('Shard(s) = %s' % shards)
 
+    # Create macro result with generated fragment.
     macro_result = {
         "requestId": event['requestId'],
         "status": "success",
@@ -23,6 +39,19 @@ def lambda_handler(event, context):
         )
     }
 
+    # Macro result is like this...
+    #
+    # {
+    #   "requestId": "5dee2557-92ff-4223-8786-92cf1f04966d",
+    #   "status": "success",
+    #   "fragment": {
+    #     "Type": "AWS::CloudWatch::Dashboard",
+    #     "Properties": {
+    #       "DashboardName": "kinesis-shard-cfn-macro-sample",
+    #       "DashboardBody": "..."
+    #     }
+    #   }
+    # }
     print('Macro result = %s' % macro_result)
     return macro_result
 

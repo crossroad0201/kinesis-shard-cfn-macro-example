@@ -10,12 +10,14 @@ provider:
       Resource: '*'
 
 functions:
+  # Define Lambda function for macro.
   Dashboard:
     name: kinesis-shard-cfn-macro-dashboard
     handler: dashboard.lambda_handler
 
 resources:
   Resources:
+    # Define macro.
     DashboardMacro:
       Type: "AWS::CloudFormation::Macro"
       Properties:
