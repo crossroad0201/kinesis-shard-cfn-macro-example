@@ -6,6 +6,18 @@ AWS CloudFormation macro example for Kinesis shard level metrics.
 * node.js
 * Python 2.x
 
+## Artifacts
+
+* macro/ ・・・The macro.
+  * dashboard.py　・・・Lambda function for the macro.
+  * serverless.yml　・・・Serverless Framework definition file for deploy the macro.
+  
+* sample/ ・・・Macro usage sample.
+  * fabfile.py ・・・Fabric definition file for create Kinesis stream and CloudWatch dashboard.
+  * templates/
+    * kinesis.yaml ・・・CloudFormation template for Kinesis stream.
+    * dashboard.yaml ・・・CloudFormation template for CloudWatch dashboard.
+
 ## Demo
 
 ### Deploy CloudFormation macro.
