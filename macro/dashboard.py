@@ -10,7 +10,7 @@ def lambda_handler(event, context):
 
     print('Getting shards for stream %s...' % stream_name)
     shards = __get_shards(stream_name)
-    print('Shad(s) = %s' % shards)
+    print('Shard(s) = %s' % shards)
 
     macro_result = {
         "requestId": event['requestId'],
