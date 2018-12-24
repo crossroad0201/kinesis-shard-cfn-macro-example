@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  ShardCount:
+    Type: Number
+Resources:
+  DataStream:
+    Type: AWS::Kinesis::Stream
+    Properties:
+      Name: kinesis-shard-cfn-macro-sample
+      ShardCount: !Ref ShardCount

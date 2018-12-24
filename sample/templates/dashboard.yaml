@@ -1,0 +1,8 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  Dashboard:
+    Fn::Transform:
+      Name: KinesisShardLevelDashboard
+      Parameters:
+        DashboardName: kinesis-shard-cfn-macro-sample
+        StreamName: kinesis-shard-cfn-macro-sample
